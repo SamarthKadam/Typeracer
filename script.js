@@ -1,11 +1,16 @@
 const SectionElement=document.querySelector('.section');
+let border;
 let text;
 let lenght;
 let start;
 let end;
 let  random;
 let replaceitem;
-
+let check;
+let i;
+let j;
+start=20;
+end=26;
 String.prototype.replaceAt = function(index, replacement) {
     if (index >= this.length) {
         return this.valueOf();
@@ -38,17 +43,29 @@ function replace()
 const data=fetch('backend.json').then(response=>{
     return response.json();
 }).then(data=>{
-    random=Math.floor(Math.random()*18);
-    text=`<div class="decor"></div>${data.paragraphs[0]}`;
+    // random=Math.floor(Math.random()*18);
+    text=`<span class="decor"></span>${data.paragraphs[0]}`;
     SectionElement.insertAdjacentHTML('beforeend',text); 
+   border=document.querySelector('.decor');
     lenght=text.length;
-    start=19;
-    end=24;
+    console.log(text[20],text[26])
+    // start=19;
+    // end=24;
     console.log(text[start],text[end]);
-    replaceitem=text[end+1];
+    // replaceitem=text[end+1];
 });
 
 window.addEventListener('keypress',function(e){
     console.log(e.key);
+    console.log(text[start],text[end]);
+    if(end>lenght-2)
+    {
+        console.log('End');
+        return;
+    }
+    else{
+    replaceitem=text[end+1];
+    console.log(replaceitem);
     replace();
+    }
 })

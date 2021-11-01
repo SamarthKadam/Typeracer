@@ -64,8 +64,10 @@ body{
    font-weight: 500;
 }
 .section{
+    position: relative;
     margin: auto auto;
     line-height: 1.6em;
+    text-align: justify;
     color: #50688C;
     /* color: #8B8B9F; */
     letter-spacing: 1.5px;
@@ -92,5 +94,6 @@ body{
 }
 .decor{
     color: white;
-    display: inline-block;
+    display: inline;
+    border-right: solid 2px white;
 }
