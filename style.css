@@ -150,3 +150,15 @@ body{
 .hidden{
     display: none;
 }
+@media(max-width:1018px)
+{
+    body{
+        font-size: 13px;
+    }
+}
+@media(max-width:822px)
+{
+    body{
+        font-size: 11px;
+    }
+}
