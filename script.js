@@ -1,8 +1,10 @@
 const SectionElement=document.querySelector('.section');
 const world=document.querySelector('body');
 const restart=document.querySelector('.restart');
-let typenumber;
-let speed;
+const timerdis=document.querySelector('.typingspeed');
+console.log(timerdis);
+let count=0;
+let timming=45;
 let html;
 let error;
 let border;
@@ -14,9 +16,11 @@ let end;
 let  random;
 let replaceitem;
 let check;
+let stopfun;
 let i=0;
 let j;
 let countdownstart=0;
+let lpm;
 String.prototype.replaceAt = function(index, replacement) {
     if (index >= this.length) {
         return this.valueOf();
@@ -44,15 +48,30 @@ function replace()
     end=end+1;
 }
 
-function starttimer()
+
+function letstart()
 {
-    speed=`<div class="typingspeed">${timer}</div>`;
-    SectionElement.innerHTML='';
-    SectionElement.insertAdjacentHTML('beforebegin',speed);
-    typenumber=document.querySelector('.typingspeed');
-    setInterval(function(){
-        timer=timer-1;
-        typenumber.textContent=`${timer}`;
+    timming=45;
+    timerdis.classList.remove('hidden');
+    timerdis.textContent=`${timming}`;
+    stopfun=setInterval(function()
+    {
+        timming=timming-1;
+        timerdis.textContent=`${timming}`;
+        if(timming==0)
+{
+    console.log('End');
+        clearInterval(stopfun);
+        timerdis.classList.add('hidden');
+        count=0;
+        // timming=30;
+        SectionElement.innerHTML='';
+        html=`<div class="done">Accuracy ${(100-(error/lenght*100)).toFixed(2)}%</div>`
+        SectionElement.insertAdjacentHTML('beforeend',html);
+        return;
+}
+
+
     },1000);
 }
 
@@ -78,21 +97,20 @@ const data=fetch('backend.json').then(response=>{
 });
 }
 window.addEventListener('keypress',function(e){
-      if(countdownstart===0)
-      {
-          timer=30;
-     starttimer();
-    typenumber.classList.remove('hidden');
-    countdownstart=1;
-      }
 
+    if(count===0)
+    {
+        letstart();
+        count=1;
+    }
     if(end>lenght-3)
     {
         console.log('End');
-        countdownstart=0;
+        clearInterval(stopfun);
+        timerdis.classList.add('hidden');
+        count=0;
+        // timming=30;
         SectionElement.innerHTML='';
-        typenumber.textContent='';
-        typenumber.classList.add('hidden');
         html=`<div class="done">Accuracy ${(100-(error/lenght*100)).toFixed(2)}%</div>`
         SectionElement.insertAdjacentHTML('beforeend',html);
         return;
@@ -115,4 +133,10 @@ window.addEventListener('keypress',function(e){
     }
 })
 
-restart.addEventListener('click',init);
+restart.addEventListener('click',function()
+{
+    count=0;
+    timerdis.classList.add('hidden');
+    clearInterval(stopfun);
+    init();
+});

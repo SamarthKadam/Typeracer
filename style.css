@@ -90,7 +90,9 @@ body{
 }
 .sep{
     margin-left: 10px;
-    font-weight: bold;
+    font-weight: 400;
+    font-size: 13px;
+    color: whitesmoke;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .decor{
@@ -98,6 +100,7 @@ body{
     display: inline;
     border-right: solid 2px white;
     animation-name: blink;
+    transition: .4s linear;
     animation-duration: .7s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
@@ -141,7 +144,7 @@ body{
     font-weight: 400;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     position: absolute;
-    top: 34%;
+    top: 30%;
     left: 0px;
 }
 .hidden{
