@@ -4,6 +4,7 @@ const restart=document.querySelector('.restart');
 const timerdis=document.querySelector('.typingspeed');
 console.log(timerdis);
 let count=0;
+let bug;
 let timming=45;
 let html;
 let error;
@@ -64,6 +65,7 @@ function letstart()
         clearInterval(stopfun);
         timerdis.classList.add('hidden');
         count=0;
+        bug=1;
         // timming=30;
         SectionElement.innerHTML='';
         html=`<div class="done">Accuracy ${(100-(error/lenght*100)).toFixed(2)}%</div>`
@@ -98,6 +100,11 @@ const data=fetch('backend.json').then(response=>{
 }
 window.addEventListener('keypress',function(e){
 
+    if(bug===1)
+    {
+        return 
+    }
+    else{
     if(count===0)
     {
         letstart();
@@ -105,6 +112,7 @@ window.addEventListener('keypress',function(e){
     }
     if(end>lenght-3)
     {
+        bug=1;
         console.log('End');
         clearInterval(stopfun);
         timerdis.classList.add('hidden');
@@ -131,11 +139,13 @@ window.addEventListener('keypress',function(e){
         }, 200);
     }
     }
+}
 })
 
 restart.addEventListener('click',function()
 {
     count=0;
+    bug=0;
     timerdis.classList.add('hidden');
     clearInterval(stopfun);
     init();
