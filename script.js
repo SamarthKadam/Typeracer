@@ -2,7 +2,6 @@ const SectionElement=document.querySelector('.section');
 const world=document.querySelector('body');
 const restart=document.querySelector('.restart');
 const timerdis=document.querySelector('.typingspeed');
-console.log(timerdis);
 let count=0;
 let bug;
 let timming=45;
@@ -113,7 +112,6 @@ window.addEventListener('keypress',function(e){
     if(end>lenght-3)
     {
         bug=1;
-        console.log('End');
         clearInterval(stopfun);
         timerdis.classList.add('hidden');
         count=0;
