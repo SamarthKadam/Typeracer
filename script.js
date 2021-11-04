@@ -86,7 +86,7 @@ function init()
 const data=fetch('backend.json').then(response=>{
     return response.json();
 }).then(data=>{
-    random=Math.floor(Math.random()*30);
+    random=Math.floor(Math.random()*51);
     text=`<span class="decor"></span>${data.paragraphs[random]}`;
     SectionElement.insertAdjacentHTML('beforeend',text); 
    border=document.querySelector('.decor');
