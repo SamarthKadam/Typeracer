@@ -109,7 +109,7 @@ window.addEventListener('keypress',function(e){
         letstart();
         count=1;
     }
-    if(end>lenght-3)
+    if(end>lenght-2)
     {
         bug=1;
         clearInterval(stopfun);

@@ -100,7 +100,7 @@ body{
     display: inline;
     border-right: solid 2px white;
     animation-name: blink;
-    transition: .4s linear;
+    transition: 1s linear;
     animation-duration: .7s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
