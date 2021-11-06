@@ -21,6 +21,7 @@ let i=0;
 let j;
 let countdownstart=0;
 let lpm;
+let dp;
 String.prototype.replaceAt = function(index, replacement) {
     if (index >= this.length) {
         return this.valueOf();
@@ -79,6 +80,7 @@ function letstart()
 init();
 function init()
 {
+    dp=0;
     error=0;
     start=20;
     end=26;
@@ -97,6 +99,29 @@ const data=fetch('backend.json').then(response=>{
     // replaceitem=text[end+1];
 });
 }
+
+function endingit()
+{
+    bug=1;
+    clearInterval(stopfun);
+    timerdis.classList.add('hidden');
+    count=0;
+    // timming=30;
+    SectionElement.innerHTML='';
+    html=`<div class="done">Accuracy ${(100-(error/lenght*100)).toFixed(2)}%</div>`
+    SectionElement.insertAdjacentHTML('beforeend',html);
+}
+
+function ErrorRender()
+{
+    error=error+1;
+            world.style.transition='.3s';
+            world.style.backgroundColor='rgb(255, 127, 127)';
+            setTimeout(function()
+            {
+                world.style.backgroundColor='#191826';
+            }, 200);
+}
 window.addEventListener('keypress',function(e){
 
     if(bug===1)
@@ -111,14 +136,15 @@ window.addEventListener('keypress',function(e){
     }
     if(end>lenght-3)
     {
-        bug=1;
-        clearInterval(stopfun);
-        timerdis.classList.add('hidden');
-        count=0;
-        // timming=30;
-        SectionElement.innerHTML='';
-        html=`<div class="done">Accuracy ${(100-(error/lenght*100)).toFixed(2)}%</div>`
-        SectionElement.insertAdjacentHTML('beforeend',html);
+        console.log(e.key,text[end+1]);
+        if(e.key===text[end+1])
+        {
+       endingit();
+        }
+        else{
+            ErrorRender();
+
+        }
         return;
     }
     else{
@@ -128,13 +154,7 @@ window.addEventListener('keypress',function(e){
     replace();
     }
     else{
-        error=error+1;
-        world.style.transition='.3s';
-        world.style.backgroundColor='rgb(255, 127, 127)';
-        setTimeout(function()
-        {
-            world.style.backgroundColor='#191826';
-        }, 200);
+        ErrorRender();
     }
     }
 }
