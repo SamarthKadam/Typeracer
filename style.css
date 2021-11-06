@@ -101,6 +101,7 @@ body{
     border-right: solid 2px white;
     animation-name: blink;
     transition: 1s linear;
+    text-align: justify;
     animation-duration: .7s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
